@@ -1,5 +1,9 @@
 # Pedra-Papel-Tesoura-JAVA
 Joguinho simples criado usando Java Swing para interface gráfica
 # Funcionamento
-![imagem_2024-03-23_153248113](https://github.com/ClaytonAugust/Pedra-Papel-Tesoura-JAVA/assets/130181629/6344d61c-bed0-40c4-8093-bd4ba677fec8)
-![Screenshot_9](https://github.com/ClaytonAugust/Pedra-Papel-Tesoura-JAVA/assets/130181629/ae8d9c0d-7d6b-4805-8722-0e9cf0648008)
+
+![image](https://github.com/ClaytonAugust/Pedra-Papel-Tesoura-JAVA/assets/130181629/6a19312f-f40b-4dc1-aa46-ee18e532f8d5)
+Pedra foi selecionado
+![image](https://github.com/ClaytonAugust/Pedra-Papel-Tesoura-JAVA/assets/130181629/d7ce441c-c5c2-4e8d-9c17-6dd5a8a69b54)
+Jogador = papel, máquina = pedra.
+![image](https://github.com/ClaytonAugust/Pedra-Papel-Tesoura-JAVA/assets/130181629/195536b0-95dc-4ee2-af64-4020a49a955d)
