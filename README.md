@@ -9,6 +9,8 @@ Pedra foi selecionado
 
 
 ![image](https://github.com/ClaytonAugust/Pedra-Papel-Tesoura-JAVA/assets/130181629/d7ce441c-c5c2-4e8d-9c17-6dd5a8a69b54)
+
+
 Jogador = papel, máquina = pedra.
 
 
