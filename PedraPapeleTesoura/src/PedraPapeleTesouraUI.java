@@ -14,11 +14,14 @@ import javax.swing.JLabel;
 public class PedraPapeleTesouraUI extends javax.swing.JFrame {
     private Icon imgIcon; /*Uma variável de instância privada do tipo Icon,
                             que será usada para armazenar ícones.*/
+    
+    private int vitoriasJogador = 0; //variável para armazenar as vitorias do jogador
+    private int vitoriasMaquina = 0; //variável para armazenar as vitorias do jogador
 
     private int jogadaDoJogador(int escolhaJogador) { /*Método que recebe a escolha
                                                         do jogador como parâmetro*/
         int escolhaMaquina = randInt(0, 2); //Gera uma escolha aleatória para a máquina
-        String mensagem = "";
+        String mensagem = ""; //variável usada para armazenar o resultado do jogo
 
         if (escolhaJogador == escolhaMaquina) { //Compara os dois valores e da o resultado
             mensagem = "Empate!";
@@ -26,9 +29,14 @@ public class PedraPapeleTesouraUI extends javax.swing.JFrame {
                    (escolhaJogador == 1 && escolhaMaquina == 0) ||
                    (escolhaJogador == 2 && escolhaMaquina == 1)) {
             mensagem = "Jogador ganhou!";
+            vitoriasJogador++; //Faz incrementar a contagem de vitorias do jogador
         } else {
             mensagem = "Máquina ganhou!";
+            vitoriasMaquina++; //Faz incrementar a contagem de vitorias da maquina
         }
+        
+        jLabelVitoriasJogador.setText(""+vitoriasJogador);
+        jLabelVitoriasMaquina.setText(""+vitoriasMaquina);
 
         // Exibir a mensagem na JLabel
         jLabelMensagem.setText(mensagem);
@@ -46,8 +54,9 @@ public class PedraPapeleTesouraUI extends javax.swing.JFrame {
     }
     //Método que recebe um JLabel e a escolha da máquina como parâmetros
     public void setImageIcon(JLabel label, int escolhaMaquina){
-        ImageIcon imgIcon = null;
+        ImageIcon imgIcon = null;//variável inicializada com referência nula
     
+        // Com base na escolha da máquina, vai ser referênciada a imagem
         if (escolhaMaquina == 0) {
             imgIcon = new ImageIcon(getClass().getResource("/imagens/stone.png"));
         } else if (escolhaMaquina == 1) {
@@ -83,6 +92,10 @@ public class PedraPapeleTesouraUI extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabelMensagem = new javax.swing.JLabel();
+        jVitoriasJogador = new javax.swing.JLabel();
+        jVitoriasMaquina = new javax.swing.JLabel();
+        jLabelVitoriasJogador = new javax.swing.JLabel();
+        jLabelVitoriasMaquina = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
@@ -96,6 +109,7 @@ public class PedraPapeleTesouraUI extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(204, 204, 204));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setPreferredSize(new java.awt.Dimension(550, 650));
 
@@ -143,65 +157,106 @@ public class PedraPapeleTesouraUI extends javax.swing.JFrame {
         jLabel4.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(0, 0, 0)));
 
         jLabelMensagem.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        jLabelMensagem.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelMensagem.setText("Ganhador");
+
+        jVitoriasJogador.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jVitoriasJogador.setForeground(new java.awt.Color(0, 0, 255));
+        jVitoriasJogador.setText("Vitórias do Jogador:");
+
+        jVitoriasMaquina.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jVitoriasMaquina.setForeground(new java.awt.Color(255, 0, 51));
+        jVitoriasMaquina.setText("Vitórias da Máquina:");
+
+        jLabelVitoriasJogador.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabelVitoriasJogador.setText("0");
+
+        jLabelVitoriasMaquina.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabelVitoriasMaquina.setText("0");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(40, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(77, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(sair, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(pedra, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(tesoura, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(papel, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)))
+                        .addComponent(sair, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(135, 135, 135))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabelMensagem)
-                        .addGap(220, 220, 220))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jVitoriasJogador, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabelVitoriasJogador)
+                                .addGap(86, 86, 86)))
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(162, 162, 162))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jVitoriasMaquina))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(73, 73, 73)
+                                .addComponent(jLabelVitoriasMaquina)))
+                        .addGap(43, 43, 43))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(64, 64, 64))))
+                        .addGap(64, 64, 64))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(pedra, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(papel, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(tesoura, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(21, 21, 21))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+                            .addComponent(jLabelMensagem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(179, 179, 179))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(45, 45, 45)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabelMensagem, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tesoura, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(papel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pedra, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(45, 45, 45)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(113, 113, 113)
+                                .addComponent(jVitoriasJogador, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabelVitoriasJogador))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(115, 115, 115)
+                                .addComponent(jVitoriasMaquina, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabelVitoriasMaquina)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelMensagem, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tesoura, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pedra, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(papel, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(sair, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(71, 71, 71))
+                .addGap(89, 89, 89))
         );
 
         pack();
@@ -266,6 +321,10 @@ public class PedraPapeleTesouraUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabelMensagem;
+    private javax.swing.JLabel jLabelVitoriasJogador;
+    private javax.swing.JLabel jLabelVitoriasMaquina;
+    private javax.swing.JLabel jVitoriasJogador;
+    private javax.swing.JLabel jVitoriasMaquina;
     private javax.swing.JButton papel;
     private javax.swing.JButton pedra;
     private javax.swing.JButton sair;
